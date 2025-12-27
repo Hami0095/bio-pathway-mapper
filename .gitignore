@@ -1,0 +1,7 @@
+# .gitignore for Biological Knowledge Graph Project
+# Ignore Python bytecode files
+__pycache__/
+cache/*.py[cod]
+cache/*.pkl
+# Ignore virtual environment directories
+venv/*

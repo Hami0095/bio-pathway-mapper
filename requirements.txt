@@ -1,0 +1,17 @@
+requests
+networkx
+numpy
+aiohttp
+h5py
+pyprojroot
+mygene
+lxml
+reactome2py
+matplotlib
+scipy
+pandas
+beautifulsoup4
+bioservices
+tqdm
+wrapt
+xmltodict
