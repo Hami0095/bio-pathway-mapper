@@ -29,6 +29,10 @@ class APIClient:
             await self.session.close()
 
     async def _get(self, url, params=None, headers=None, response_format="json"):
+        if isinstance(params, str):
+            url = f"{url}?{params}"
+            params = None
+
         cache_key = str(url) + str(params) + str(headers) + response_format
         cache_file = os.path.join(self.cache_dir, f"{hash(cache_key)}.pkl")
 
@@ -152,9 +156,9 @@ class LegacyStringConnector(LegacyDatabaseConnector):
         super().__init__(api_client)
         self.base_url = "https://string-db.org/api/json/network"
 
-    async def get_string_interactions(self, uniprot_id: str):
+    async def get_string_interactions(self, gene_list: list):
         url = self.base_url
-        params = {"identifiers": uniprot_id, "species": 9606} # 9606 is human
+        params = f"identifiers={'%0d'.join(gene_list)}&species=9606"
         return await self.api_client._get(url, params=params)
 
 

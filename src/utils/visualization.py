@@ -8,16 +8,7 @@ def draw_graph(graph: nx.MultiDiGraph, communities: list = None, centrality: dic
     """
     Draws the graph using matplotlib, with options to color by community and size by centrality.
     """
-    # Check for a valid GUI backend
-    if os.environ.get('DISPLAY') is None and os.environ.get('WAYLAND_DISPLAY') is None:
-        if 'backend' not in plt.matplotlib.get_backend().lower():
-             print("\n--- Visualization Warning ---")
-             print("No GUI backend found for matplotlib. The plot will not be displayed.")
-             print("If you are running in a headless environment, this is expected.")
-             print("To see the plot, run this script in an environment with a GUI.")
-             return
-
-    plt.figure(figsize=(12, 12))
+    fig = plt.figure(figsize=(12, 12))
     pos = nx.spring_layout(graph, seed=42)
 
     # Node colors based on communities
@@ -45,4 +36,4 @@ def draw_graph(graph: nx.MultiDiGraph, communities: list = None, centrality: dic
     nx.draw_networkx_labels(graph, pos, font_size=8)
 
     plt.title("Biological Knowledge Graph")
-    plt.show(block=True) # Use block=True to keep the plot open
+    return fig

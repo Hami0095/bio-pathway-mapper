@@ -7,7 +7,7 @@ from ..core.config import Config # Import Config for max_json_retries
 
 class OllamaAdapter(LLMAdapter):
     """Ollama-specific implementation"""
-    def __init__(self, model_name="minimax-m2:cloud", base_url="http://localhost:11434"):
+    def __init__(self, model_name="gemma3:1b", base_url="http://localhost:11434"):
         super().__init__(model_name, base_url)
         self.session = requests.Session()
         self.max_json_retries = Config.MAX_JSON_RETRIES

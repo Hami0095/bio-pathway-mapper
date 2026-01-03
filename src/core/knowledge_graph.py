@@ -54,10 +54,6 @@ class BiologicalKnowledgeGraph:
                 if result and "source" in result:
                     processed_results[result["source"].lower()] = result
 
-            print("\n--- Raw Database Results ---")
-            for source, data in processed_results.items():
-                print(f"From {source}: {data}")
-
             return processed_results
 
     def reconcile_and_add_pathway_data(self, database_results: Dict):
@@ -97,13 +93,9 @@ class BiologicalKnowledgeGraph:
 
         TASK: Process the input data and return JSON only.
         """
-        print("\n--- Reconciling Pathway Data with LLM ---")
         reconciled_data = self.llm.generate_text(prompt, json_output=True)
         
         if isinstance(reconciled_data, dict) and not reconciled_data.get("error"):
-            print("--- LLM Reconciliation Results ---")
-            print(json.dumps(reconciled_data, indent=2))
-
             # Now, add the reconciled data to the graph
             for pathway in reconciled_data.get("reconciled_pathways", []):
                 pathway_id = pathway.get("pathway_id")
@@ -116,8 +108,6 @@ class BiologicalKnowledgeGraph:
             return reconciled_data
 
         else:
-            print("Error: LLM reconciliation failed or returned an error.")
-            print(f"LLM Response: {reconciled_data}")
             return None
         
     def generate_biological_insights(self, query: str) -> str:
@@ -125,7 +115,6 @@ class BiologicalKnowledgeGraph:
         Uses the LLM to analyze the network and generate insights based on a query.
         """
         if not self.centrality_scores or not self.communities:
-            print("Warning: Please run analyze_centrality() and detect_communities() first.")
             return "Analysis has not been run. Please run analysis first."
 
         # Create a summary of the analysis results to use in the prompt
@@ -143,9 +132,6 @@ class BiologicalKnowledgeGraph:
         # Combine with the user's query
         full_prompt = f"{prompt_context}\nBased on this analysis, please answer the following question: {query}"
 
-        print("\n--- Generating Biological Insights with LLM ---")
-        # print(f"Prompt sent to LLM:\n{full_prompt}") # Making this optional to reduce verbosity
-
         # Call the LLM to generate insights
         insights = self.llm.generate_text(full_prompt)
         return insights
@@ -156,7 +142,6 @@ class BiologicalKnowledgeGraph:
         Example topic: "bottleneck genes"
         """
         if not self.centrality_scores:
-            print("Warning: Please run analyze_centrality() first.")
             return "Analysis has not been run. Please run analysis first."
 
         prompt_context = ""
@@ -172,7 +157,6 @@ class BiologicalKnowledgeGraph:
         Provide a brief explanation for each hypothesis.
         """
 
-        print("\n--- Generating Hypotheses with LLM ---")
         hypotheses = self.llm.generate_text(full_prompt)
         return hypotheses
 
@@ -182,14 +166,12 @@ class BiologicalKnowledgeGraph:
         Uses a simple in-memory cache to avoid re-calculation.
         """
         if use_cache and self.centrality_scores:
-            print("Using cached centrality scores.")
             return
 
         self.centrality_scores['degree'] = centrality.calculate_degree_centrality(self.graph)
         self.centrality_scores['betweenness'] = centrality.calculate_betweenness_centrality(self.graph)
         self.centrality_scores['closeness'] = centrality.calculate_closeness_centrality(self.graph)
         self.centrality_scores['eigenvector'] = centrality.calculate_eigenvector_centrality(self.graph)
-        print("Centrality analysis complete.")
 
     def get_top_n_central_nodes(self, centrality_type: str, n: int = 10) -> List[tuple]:
         """
@@ -200,7 +182,6 @@ class BiologicalKnowledgeGraph:
         :return: A list of (node, score) tuples.
         """
         if centrality_type not in self.centrality_scores:
-            print(f"Warning: Centrality type '{centrality_type}' not found. Run analyze_centrality() first.")
             return []
         
         scores = self.centrality_scores[centrality_type]
@@ -212,15 +193,13 @@ class BiologicalKnowledgeGraph:
         Detects communities in the graph using the Louvain method and stores the result.
         """
         self.communities = community.detect_louvain_communities(self.graph)
-        print(f"Community detection complete. Found {len(self.communities)} communities.")
 
-    def visualize_graph(self) -> None:
+    def visualize_graph(self):
         """
         Generates and displays a visualization of the graph.
         """
         if not self.graph:
-            print("Graph is empty. Nothing to visualize.")
             return
             
         centrality_for_sizing = self.centrality_scores.get('degree', {})
-        visualization.draw_graph(self.graph, self.communities, centrality_for_sizing)
+        return visualization.draw_graph(self.graph, self.communities, centrality_for_sizing)

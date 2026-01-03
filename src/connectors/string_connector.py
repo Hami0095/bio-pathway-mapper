@@ -12,10 +12,7 @@ class StringConnector(DatabaseConnector):
         if not gene_list:
             return {}
         
-        # STRING API often takes a single UniProt ID or a list of identifiers
-        # For simplicity, we'll fetch interactions for the first gene in the list
-        uniprot_id_for_query = gene_list[0] # This is a simplification
-        interactions = await self.legacy_string_connector.get_string_interactions(uniprot_id_for_query)
+        interactions = await self.legacy_string_connector.get_string_interactions(gene_list)
         return {"source": self.name, "genes": gene_list, "interactions": interactions}
 
     def parse_response(self, response: Any) -> Dict:
