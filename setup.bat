@@ -32,7 +32,7 @@ echo [3/3] Final steps: Please install Ollama and pull the required model.
 echo --------------------------------------------------------------------
 echo 1. Download and install Ollama from https://ollama.ai/
 echo 2. After installation, run the following command in your terminal:
-echo    ollama pull gemma:1b
+echo    ollama pull gemma3:1b
 echo    (Optionally, for more powerful analysis, you can pull 'gpt:oss120b-cloud' if your system has sufficient resources.)
 echo 3. Once the model is downloaded, you can run the application with:
 echo    .venv\Scripts\activate.bat

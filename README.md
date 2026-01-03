@@ -33,9 +33,9 @@ Before you begin, ensure you have the following installed on your system:
     -   [Download and install Ollama](https://ollama.ai/) for your operating system (macOS, Linux, or Windows).
     -   After installing, you must pull at least one model. Open your terminal and run:
         ```bash
-        ollama pull gemma:1b
+        ollama pull gemma3:1b
         ```
-    -   **Default Model Note**: `gemma:1b` is a relatively small and manageable model, suitable for most modern laptops.
+    -   **Default Model Note**: `gemma3:1b` is a relatively small and manageable model, suitable for most modern laptops.
     -   **Optional Powerful Model**: For more detailed and nuanced insights, you can also pull a larger model:
         ```bash
         ollama pull gpt:oss120b-cloud
