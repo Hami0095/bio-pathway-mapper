@@ -1,216 +1,106 @@
-# 🧬 BioPathway-Mapper: AI-Enhanced Multi-Database Pathway Analysis
+# Biological Pathway Mapping and Analysis
 
-> **Revolutionary system that solves the "backbone pain" of bioinformatics through intelligent pathway data integration and LLM-powered biological reasoning**
+This project provides a Streamlit web application to analyze biological pathways from a list of genes. It uses a combination of public biological databases and a local Large Language Model (LLM) via Ollama to build, reconcile, and visualize a knowledge graph of genes and their associated pathways.
 
-[![bioRxiv](https://img.shields.io/badge/bioRxiv-Preprint-brightgreen)](https://www.biorxiv.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![DOI](https://img.shields.io/badge/DOI-10.1101%2F2024.xxxxx-blue.svg)](https://doi.org/10.1101/2024.xxxxx)
+## Features
 
-## 🚀 **The Problem We're Solving**
+-   **Easy Gene Input**: Paste a list of genes separated by newlines or commas.
+-   **1-Click Analysis**: Automatically fetches data, builds a knowledge graph, and runs analysis.
+-   **LLM-Powered Insights**: Generates hypotheses and biological insights from the network structure.
+-   **Interactive Visualization**: Displays the resulting gene-pathway graph.
 
-Bioinformatics faces a fundamental **"backbone pain"**: pathway analysis tools struggle to integrate data from multiple databases because each uses different formats, naming conventions, and classifications. This fragmentation makes biological insights elusive and drug discovery slower.
+## How It Works
 
-**Current Reality:**
-- **KEGG**: `path:hsa04110` 
-- **Reactome**: `R-HSA-69620`
-- **GO**: `GO:0007049`
-- **UniProt**: `P04637`
-
-*All referring to the same biological pathway, but completely incompatible!*
-
-## 💡 **Our Breakthrough Solution**
-
-**BioPathway-Mapper** is the first system to use **Large Language Models (LLMs)** for intelligent pathway data reconciliation, combined with **network theory** for biological bottleneck analysis.
-
-### **Core Innovation**
-```python
-# What we do:
-Input:  Gene list + multiple database APIs
-    ↓
-LLM Reconciliation:  Intelligent conflict resolution
-    ↓  
-Network Analysis:   Bottleneck identification
-    ↓
-Hypothesis Generation:  Testable biological predictions
-    ↓
-Output:  Structured pathways + scientific hypotheses
-```
-
-## 🎯 **Key Features**
-
-### **1. Multi-Database Integration**
-- ✅ **KEGG Pathway Database** - Real-time API integration
-- ✅ **Reactome Knowledge Base** - Hierarchical pathway mapping
-- ✅ **UniProt Protein Database** - Gene-protein mappings
-- ✅ **STRING Protein Interactions** - Network interaction data
-
-### **2. Intelligent LLM Reconciliation**
-- 🤖 **Conflict Detection** - Identifies database inconsistencies
-- 🎯 **Smart Merging** - Combines complementary information
-- 📊 **Confidence Scoring** - Assigns reliability metrics
-- 🔍 **Evidence Tracking** - Maintains source attribution
-
-### **3. Network Bottleneck Analysis**
-- 🔗 **Centrality Metrics** - Degree, betweenness, closeness analysis
-- 🎯 **Bottleneck Identification** - Critical control points
-- 🧩 **Community Detection** - Pathway module discovery
-- 📈 **Network Visualization** - Interactive graph representations
-
-### **4. Automated Hypothesis Generation**
-- 🧬 **Biological Reasoning** - LLM-powered scientific inference
-- 🎯 **Testable Predictions** - Concrete experimental suggestions
-- 📋 **Validation Strategies** - Recommended experimental approaches
-- 💊 **Therapeutic Insights** - Drug target prioritization
-
-## 📊 **Results & Impact**
-
-### **Performance Metrics**
-- ⚡ **Speed**: Analyze 100+ genes in <10 minutes
-- 🎯 **Accuracy**: >90% biological explanation rate
-- 🔄 **Coverage**: Successfully integrates 3+ databases
-- 🧬 **Discovery**: Generates 3-5 novel hypotheses per analysis
-
-### **Sample Discovery: TP53 Network Analysis**
-
-**Traditional Approach**: *"TP53 is connected to 15 proteins"*
-
-**Our System**: *"TP53 acts as a critical network bottleneck controlling 73% of p53 pathway communications. Analysis suggests TP53 perturbation would severely impact DNA damage response, cell cycle control, and apoptosis pathways. This makes TP53 a high-priority therapeutic target with estimated druggability score of 8.7/10."*
-
-### **Generated Hypotheses Example**
-```markdown
-### Hypothesis 1: Stress Response Funnel
-**Mechanism**: TP53/MDM2 regulate primary stress-response funnel
-**Prediction**: Removal → dramatic reduction in pathway-level information flow
-**Validation**: CRISPR knockdown → expect >50% connectivity reduction
-
-### Hypothesis 2: Cell Fate Decision Hub  
-**Mechanism**: Controls balance between proliferation and apoptosis
-**Prediction**: Modulation → altered reachable states in Boolean models
-**Validation**: Single-cell fate tracking under stress conditions
-
-### Hypothesis 3: Network Switch Behavior
-**Mechanism**: Acts as toggle between quiescence and senescence modules
-**Prediction**: Activation → rewires large network portions
-**Validation**: Time-course network analysis during stress response
-```
-
-## 🛠️ **Installation & Quick Start**
-
-### **Prerequisites**
-```bash
-# Python 3.8+ required
-python --version
-
-# Ollama for local LLM integration
-curl -fsSL https://ollama.ai/install.sh | sh
-ollama pull llama2  # or gemma3:1b for faster processing
-```
-
-### **Install BioPathway-Mapper**
-```bash
-# Clone repository
-git clone https://github.com/yourusername/bio-pathway-mapper.git
-cd bio-pathway-mapper
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Start Ollama server
-ollama serve &
-
-# Run example analysis
-python examples/tp53_analysis.py
-```
-
-## 🔬 **Use Cases**
-
-### **Drug Discovery**
-- **Target Identification**: Find novel drug targets through network analysis
-- **Mechanism Prediction**: Understand drug action through pathway mapping
-- **Combination Therapy**: Identify synergistic drug targets
-
-### **Cancer Research**  
-- **Mutation Analysis**: Map cancer mutations to pathway disruption
-- **Biomarker Discovery**: Find pathway-based diagnostic markers
-- **Precision Medicine**: Patient-specific pathway profiles
-
-### **Systems Biology**
-- **Network Medicine**: Understand disease through network perturbations
-- **Functional Genomics**: Link genes to biological functions
-- **Evolutionary Biology**: Pathway conservation across species
-
-## 📈 **Future Directions**
-
-### **Short Term**
-- [ ] **Web Interface**: Interactive pathway mapping dashboard
-- [ ] **Additional Databases**: Integration with more pathway resources
-- [ ] **Performance Optimization**: Faster processing for large gene sets
-- [ ] **Visualization Tools**: Enhanced network visualization
-
-### **Long Term**
-- [ ] **Tissue-Specific Analysis**: Pathway mapping by tissue/cell type
-- [ ] **Temporal Dynamics**: Time-course pathway analysis
-- [ ] **Disease-Specific Models**: Cancer, neurodegeneration, etc.
-- [ ] **Drug Repurposing**: Identify existing drugs for new targets
-
-## 🤝 **Contributing**
-
-We welcome contributions from the community! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### **How to Contribute**
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
-
-### **Areas for Contribution**
-- 🗄️ **Database Connectors**: Add new pathway databases
-- 🤖 **LLM Integration**: Improve reconciliation algorithms  
-- 📊 **Network Analysis**: Enhanced centrality metrics
-- 🧬 **Biological Insights**: Better hypothesis generation
-- 🖥️ **Interface**: Web UI, visualization tools
-
-## 📄 **Citation**
-
-If you use BioPathway-Mapper in your research, please cite:
-
-<!-- ```bibtex
-@article{yourname2024,
-  title={LLM-Enhanced Multi-Database Pathway Mapping with Network Bottleneck Analysis},
-  author={Your Name and Co-authors},
-  journal={bioRxiv},
-  year={2025},
-  doi={10.1101/2024.xxxxx}
-} 
-``` -->
-```
-To be mentioned soon
-```
-## 📞 **Contact & Support**
-
-- **Email**: abdman0095@gmail.com
-- **Twitter**: [@abdur_rehman95](https://x.com/abdur_rehman95)
-- **LinkedIn**: [Mohammad Abdur Rehman Cheema](https://www.linkedin.com/in/mabdurrehmancheema/)
-<!-- - **Issues**: [GitHub Issues](https://github.com/yourusername/bio-pathway-mapper/issues) -->
-
-## 📜 **License**
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 **Acknowledgments**
-
-- **Ollama Team**: For providing excellent local LLM infrastructure
-- **Database Providers**: KEGG, Reactome, UniProt, STRING communities
-- **Open Source Contributors**: All libraries that made this possible
-- **Bioinformatics Community**: For feedback and suggestions
+1.  **Data Fetching**: Gathers pathway and interaction data from KEGG, Reactome, UniProt, and STRING-DB.
+2.  **LLM Reconciliation**: Uses a local LLM (via Ollama) to clean, merge, and reconcile the data from the different sources into a coherent set of pathways.
+3.  **Graph Analysis**: Builds a network graph and analyzes it to find central nodes and communities.
+4.  **Insight Generation**: Feeds the analysis results back into the LLM to generate plain-language hypotheses and summaries.
+5.  **Streamlit UI**: Provides a simple web interface for users to input genes and see the results.
 
 ---
 
-**Built with ❤️ for the bioinformatics community**
+## Getting Started: Local Setup
 
-*"Transforming messy biological data into clear scientific insights, one pathway at a time."*
+These instructions will help you get a copy of the project up and running on your local machine for development and testing purposes.
 
-[![Star on GitHub](https://img.shields.io/github/stars/yourusername/bio-pathway-mapper?style=social)](https://github.com/yourusername/bio-pathway-mapper)
-[![Follow on Twitter](https://img.shields.io/twitter/follow/YourHandle?style=social)](https://twitter.com/YourHandle)
+### Prerequisites
+
+Before you begin, ensure you have the following installed on your system:
+
+1.  **Git**: To clone the repository.
+2.  **Python 3.9+**: To run the application.
+3.  **Ollama**: To run the local Large Language Model.
+    -   [Download and install Ollama](https://ollama.ai/) for your operating system (macOS, Linux, or Windows).
+    -   After installing, you must pull at least one model. Open your terminal and run:
+        ```bash
+        ollama pull gemma:1b
+        ```
+    -   **Default Model Note**: `gemma:1b` is a relatively small and manageable model, suitable for most modern laptops.
+    -   **Optional Powerful Model**: For more detailed and nuanced insights, you can also pull a larger model:
+        ```bash
+        ollama pull gpt:oss120b-cloud
+        ```
+        `gpt:oss120b-cloud` is a very large model and requires significant computational resources (e.g., a powerful CPU and ample RAM, or a GPU) to run effectively. If you choose to use this model, you will need to update the `src/adapters/ollama_adapter.py` file to specify `gpt:oss120b-cloud` as the model name.
+
+### Installation and Setup
+
+Follow these steps to set up the project environment.
+
+**1. Clone the Repository**
+
+Open your terminal or command prompt and clone the repository to your local machine:
+
+```bash
+git clone https://github.com/Hami0095/bio-pathway-mapper.git
+cd bio-pathway-mapper/biological_kg
+```
+
+**2. Create and Activate a Python Virtual Environment**
+
+It's highly recommended to use a virtual environment to manage project dependencies.
+
+*   **On macOS/Linux:**
+    ```bash
+    python3 -m venv .venv
+    source .venv/bin/activate
+    ```
+*   **On Windows:**
+    ```bash
+    python -m venv .venv
+    .venv\Scripts\activate
+    ```
+
+**3. Install Dependencies**
+
+With your virtual environment activated, install the required Python packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+## Running the Application
+
+Once the setup is complete, you can run the Streamlit application.
+
+**1. Ensure Ollama is Serving the Model**
+
+Make sure the Ollama application is running on your machine. You can check this by looking for the Ollama icon in your system's menu bar or taskbar.
+
+**2. Launch the Streamlit App**
+
+In your terminal (with the virtual environment still activated), run the following command:
+
+```bash
+streamlit run streamlit_app.py
+```
+
+This will open the application in a new tab in your default web browser. You can now start using the tool!
+
+## Credits
+- **Abdur Rehman** - [LinkedIn](https://www.linkedin.com/in/your-linkedin-profile)
+
+## Future Work
+
+We plan to create an "Automated Setup Agent" that will download and complete the setup of installing the model on users' computers and will launch the Streamlit app on their browsers along with the Ollama server. You can track the progress of this feature in [Issue #1](https://github.com/Hami0095/bio-pathway-mapper/issues/1) (this is a placeholder link).
